@@ -1,1 +1,1 @@
-# CPS-srm-ccc-HackerRankSolution
+# Hackerrank-CCC-solutions
