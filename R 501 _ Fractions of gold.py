@@ -1,42 +1,22 @@
-from typing import List, Tuple
+#This Solution by CHATGPT 1000% success
+n, w = map(int, input().split())
 
-class ItemValue:
-    def __init__(self, wt: int, val: int, ind: int):
-        self.wt = wt
-        self.val = val
-        self.ind = ind
-        self.cost = val/wt
- 
-def getMaxValue(wt: List[int], val: List[int], capacity: int) -> float:
-    n = len(wt)
-    iVal = [ItemValue(wt[i], val[i], i) for i in range(n)]
-    iVal.sort(key=lambda x: x.cost, reverse=True)
-    totalValue = 0
-    for i in iVal:
-        curWt = int(i.wt)
-        curVal = int(i.val)
-        if capacity - curWt >= 0:
-            capacity -= curWt
-            totalValue += curVal
-        else:
-            fraction = capacity / curWt
-            totalValue += curVal * fraction
-            capacity = int(capacity - (curWt * fraction))
-            break
-    if capacity > 0:
-        return -1
-    return totalValue
- 
-if __name__ == "__main__":
-    n, capacity = map(int, input().split())
-    wt = []
-    val = []
-    for i in range(n):
-        w, v = map(int, input().split())
-        wt.append(w)
-        val.append(v)
-    maxValue = getMaxValue(wt, val, capacity)
-    if maxValue < 0:
-        print("-1")
-    else:
-        print("{:.12f}".format(maxValue))
+samples = []
+for i in range(n):
+    wi, vi = map(int, input().split())
+    samples.append((wi, vi))
+
+samples.sort(key=lambda x: x[1]/x[0], reverse=True)
+
+value = 0
+for wi, vi in samples:
+    if w == 0:
+        break
+    fraction = min(w, wi)
+    value += fraction * (vi/wi)
+    w -= fraction
+
+if w > 0:
+    print(-1)
+else:
+    print(value)

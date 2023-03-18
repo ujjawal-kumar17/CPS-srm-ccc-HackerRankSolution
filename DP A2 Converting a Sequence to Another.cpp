@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
+
 using namespace std;
 
-int min_cost_to_convert(vector<int> A, vector<int> B) {
+int min_cost_to_convert(const vector<int>& A, const vector<int>& B) {
     int n = A.size();
     int m = B.size();
 
@@ -21,7 +21,7 @@ int min_cost_to_convert(vector<int> A, vector<int> B) {
             if (A[i-1] == B[j-1]) {
                 dp[i][j] = dp[i-1][j-1];
             } else {
-                dp[i][j] = 1 + min({dp[i-1][j], dp[i][j-1], dp[i-1][j-1]});
+               dp[i][j] = 1 + min(min(dp[i-1][j], dp[i][j-1]), dp[i-1][j-1]);
             }
         }
     }
@@ -34,15 +34,15 @@ int main() {
     cin >> n;
 
     vector<int> A(n);
-    for (int i = 0; i < n; i++) {
-        cin >> A[i];
+    for (auto& a : A) {
+        cin >> a;
     }
 
     cin >> m;
 
     vector<int> B(m);
-    for (int i = 0; i < m; i++) {
-        cin >> B[i];
+    for (auto& b : B) {
+        cin >> b;
     }
 
     cout << min_cost_to_convert(A, B) << endl;
