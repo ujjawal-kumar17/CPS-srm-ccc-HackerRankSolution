@@ -10,7 +10,7 @@ void f(int i,int j)
 {
     if(i<0 || i>=n || j<0 || j>=n || s[i][j]!='T')
         return;
-    
+
     s[i][j] = 'W';
     f(i-1,j);
     f(i,j-1);
@@ -21,12 +21,12 @@ void f(int i,int j)
 int main() 
 {
     scanf("%d",&n);
-    
+
     int i, j;
-    
+
     for(i=0;i<n;i++)
         scanf("%s",s[i]);
-    
+
     for(i=0;i<n;i++)
     {
         for(j=0;j<n;j++)
@@ -38,7 +38,7 @@ int main()
             }
         }
     }
-    
+
     printf("%d",c);
     return 0;
 }

@@ -1,4 +1,8 @@
+
+#the string
 astr=input()
+
+#substring
 pattern=input()
 
 def num_of_patterns(astr,pattern):
